@@ -14,7 +14,74 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+import React, { useState } from "react";
 
+const Shop = () => {
+  // Sample data for demonstration
+  const items = [
+    { id: 1, name: "Hot Coffee", category: "Hot" },
+    { id: 2, name: "Cold Coffee", category: "Cold" },
+    { id: 3, name: "Sandwich", category: "Food" },
+    { id: 4, name: "Tea", category: "Hot" },
+    { id: 5, name: "Iced Tea", category: "Cold" },
+    { id: 6, name: "Pizza", category: "Food" },
+  ];
+
+  const [filter, setFilter] = useState("All");
+
+  // Filter items based on the selected category
+  const filteredItems =
+    filter === "All"
+      ? items
+      : items.filter((item) => item.category === filter);
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Coffee Shop</h1>
+      
+      {/* Filter Buttons */}
+      <div className="mb-6 space-x-4">
+        <button
+          className={`px-4 py-2 rounded ${filter === "Hot" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          onClick={() => setFilter("Hot")}
+        >
+          Hot
+        </button>
+        <button
+          className={`px-4 py-2 rounded ${filter === "Cold" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          onClick={() => setFilter("Cold")}
+        >
+          Cold
+        </button>
+        <button
+          className={`px-4 py-2 rounded ${filter === "Food" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          onClick={() => setFilter("Food")}
+        >
+          Food
+        </button>
+        <button
+          className={`px-4 py-2 rounded ${filter === "All" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+          onClick={() => setFilter("All")}
+        >
+          All
+        </button>
+      </div>
+
+      {/* Display Filtered Items */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredItems.map((item) => (
+          <div
+            key={item.id}
+            className="p-4 border rounded shadow hover:shadow-lg transition"
+          >
+            <h2 className="text-lg font-semibold">{item.name}</h2>
+            <p className="text-sm text-gray-500">{item.category}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const ShopContainer = styled.div`
   padding: 6rem 2rem 4rem 2rem;
