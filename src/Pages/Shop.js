@@ -166,7 +166,7 @@ const products = [
   { id: 8, name: 'Flat white', price: 5.5, image: 'https://static.toiimg.com/thumb/86699095.cms?imgsize=59654&width=509&height=340 ', description: 'Velvety microfoam poured over a double shot of espresso, smooth and creamy.', type: 'hot' },
   { id: 9, name: 'Nitro Cold Brew', price: 4.5, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_ZcJOr1zaqJ-TkW9Ie1PcNRRrgPDnNSgX9A&s ', description: 'Cold brew infused with nitrogen, creating a creamy, Guinness-like texture.', type: 'cold' },
   { id: 10, name: 'Doppio', price: 3.4, image: 'https://lifeboostcoffee.com/cdn/shop/articles/Doppio_Espresso_Macchiato.jpg?v=1655197439 ', description: 'A double shot of espresso, strong and intense, perfect for espresso lovers.', type: 'hot' },
-  { id: 11, name: 'Viennese Coffee', price: 4, image: 'https://irepo.primecp.com/2015/10/241007/Vienna-Coffee-01-12-07-OR_Category-CategoryPageDefault_ID-1242862.jpg?v=1242862 ', description: 'Espresso topped with whipped cream, often served with chocolate shavings.', type: 'cold' },
+  { id: 11, name: 'Viennese Coffee', price: 4, image: 'https://irepo.primecp.com/2015/10/241007/Vienna-Coffee-01-12-07-OR_Category-CategoryPageDefault_ID-1242862.jpg?v=1242862 ', description: 'Espresso topped with whipped cream, often served with chocolate shavings.', type: 'hot' },
   { id: 12, name: 'Ristretto', price: 5.2, image: 'https://www.castironketo.net/wp-content/uploads/2023/10/is-ristretto-keto-friendly-header-image.jpg ', description: 'A short shot of espresso, sweeter and more concentrated than regular espresso.', type: 'hot' },
   { id: 13, name: 'Red Eye', price: 6.2, image: 'https://www.sessioncoffeedenver.com/wp-content/uploads/2024/04/what-is-a-red-eye-coffee.jpg ', description: 'A cup of brewed coffee with a shot of espresso, extra strong and caffeinated.', type: 'cold' },
   { id: 14, name: 'Frappé', price: 8.2, image: 'https://img.sndimg.com/food/image/upload/f_auto,c_thumb,q_55,w_860,ar_3:2/v1/img/recipes/23/29/18/x38TQCFcRRiV1FJYbTLP_coffeefrappe2.jpg', description: 'Iced coffee drink blended with milk and sugar, often topped with whipped cream.', type: 'cold' },
@@ -180,7 +180,7 @@ const products = [
   { id: 22, name: 'Black Tea', price: 4.5, image: 'https://img.freepik.com/free-photo/cup-black-tea_144627-34464.jpg?ga=GA1.1.1542821208.1727756299&semt=ais_hybrid ', description: 'Strong and full-bodied, made from fully oxidized tea leaves, classic and robust.', type: 'hot' },
   { id: 23, name: 'Herbal Tea', price: 5.5, image: 'https://img.freepik.com/premium-photo/black-tea-cup-glass-mint-tea-leaves-white-isolated_127657-17608.jpg?ga=GA1.1.900909129.1729318722&semt=ais_hybrid ', description: 'Caffeine-free tea made from herbs, fruits, or spices, naturally soothing.', type: 'hot' },
   { id: 24, name: 'Iced Tea', price: 5.6, image: 'https://img.freepik.com/free-vector/long-island-ice-tea-cocktail-realistic_1284-3888.jpg?ga=GA1.1.900909129.1729318722&semt=ais_hybrid ', description: 'Refreshing chilled tea, often sweetened and served with lemon, perfect for hot days.', type: 'cold' },
-  { id: 25, name: 'Irish Coffee', price: 7.2, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNlPYx_StS2Y7x9s4hukcCyJZaDm54mgbe8g&s', description: 'Coffee with Irish whiskey, sugar, and cream, a warm and boozy treat.' },
+  { id: 25, name: 'Irish Coffee', price: 7.2, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNlPYx_StS2Y7x9s4hukcCyJZaDm54mgbe8g&s', description: 'Coffee with Irish whiskey, sugar, and cream, a warm and boozy treat.', type: 'cold' },
   { id: 26, name: 'Strawberry smoothie', price: 6.2, image: 'https://www.eatingwell.com/thmb/TBp6lbiwoYPhRP4N__4sROiUDhA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/mixed-berry-breakfast-smoothie-7959466-1x1-e0ad2304222e49508cda7b73b21de921.jpg', description: 'Creamy and sweet, made with fresh strawberries, yogurt, and a touch of honey.', type: 'cold' },
   { id: 27, name: 'Mango smoothie', price: 3.2, image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/05/mango-smoothie.jpg', description: 'Tropical and refreshing, blended with ripe mangoes, banana, and coconut milk.', type: 'cold' },
   { id: 28, name: 'Strawberry banana smoothie', price: 6.45, image: 'https://www.purelykaylie.com/wp-content/uploads/2023/07/strawberry-banana-smoothie-bowl-5.jpg', description: 'A classic combination of strawberries and bananas, creamy and naturally sweet.', type: 'cold' },
@@ -724,7 +724,7 @@ function Shop() {
       setItemsNo(Math.min(itemsNo + 9, s));
     }
   };
-
+  
   // Group products by type (category)
   const groupedProducts = products.reduce((acc, product) => {
     if (!acc[product.type]) acc[product.type] = [];
@@ -804,18 +804,13 @@ function Shop() {
         </Button>
       </ButtonGroup>
 
-      {/* Dynamically render sections */}
+      {/* Dynamically render sections */} 
       <div>
         {Object.keys(groupedProducts).map((section) => {
           const sectionProducts = groupedProducts[section];
 
-          // Only display the section if it matches the search query or if the search query is empty
-          const matchesSearchQuery = sectionProducts.some((product) =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-
-          // Skip section if no products match the search query and the search query is not empty
-          if (searchQuery && !matchesSearchQuery) {
+          // Only display the section if it matches the selected category
+          if (section !== category) {
             return null;
           }
 
