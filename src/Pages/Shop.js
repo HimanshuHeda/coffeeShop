@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { addToCart } from '../Store/cartSlice';
-import { useState } from 'react';
+
 import Button from '../componets/Button';
 import { toast, ToastContainer } from 'react-toastify'; // Add this import
 import 'react-toastify/dist/ReactToastify.css';
